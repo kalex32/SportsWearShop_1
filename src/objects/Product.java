@@ -1,19 +1,21 @@
 package objects;
 
 public class Product {
-    private Integer id;
+    private Long id;
     private String name;
     private String brand;
     private ProductCategory category;
     private Double price;
     private String color;
     private String size;
-    private String comment;
+    private byte[] description;
+    private byte[] image;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, String brand, ProductCategory category, Double price, String color, String size, String comment) {
+    public Product(Long id, String name, String brand, ProductCategory category, Double price, String color, String size,
+                   byte[] description, byte[] image) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -21,14 +23,15 @@ public class Product {
         this.price = price;
         this.color = color;
         this.size = size;
-        this.comment = comment;
+        this.description = description;
+        this.image = image;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -80,11 +83,19 @@ public class Product {
         this.size = size;
     }
 
-    public String getComment() {
-        return comment;
+    public byte[] getDescription() {
+        return description;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setDescription(byte[] description) {
+        this.description = description;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
