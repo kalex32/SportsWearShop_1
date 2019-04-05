@@ -10,6 +10,7 @@ public class Office {
     private String email;
     private String phone;
     private User password;
+    private User login;
     private Set<Order> orders;
 
 }
