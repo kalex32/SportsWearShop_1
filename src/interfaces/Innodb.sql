@@ -75,3 +75,37 @@ ALTER TABLE `sportswearshop1`.`product`
       REFERENCES `sportswearshop1`.`product_category` (`id`)
       ON DELETE NO ACTION
       ON UPDATE NO ACTION;
+
+
+# add 07_04_19
+
+ALTER TABLE `sportswearshop1`.`product`
+  ADD COLUMN `out_of_stock` INT NULL DEFAULT NULL AFTER `image`;
+
+ALTER TABLE `sportswearshop1`.`cart`
+  ADD COLUMN `quantity` INT NULL DEFAULT NULL AFTER `products_id`,
+  CHANGE COLUMN `products` `products_id` BIGINT(10) NULL DEFAULT NULL ;
+
+ALTER TABLE `sportswearshop1`.`cart`
+  ADD INDEX `fk_product_id_idx` (`products_id` ASC) VISIBLE;
+;
+ALTER TABLE `sportswearshop1`.`cart`
+  ADD CONSTRAINT `fk_product_id`
+    FOREIGN KEY (`products_id`)
+      REFERENCES `sportswearshop1`.`product` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
+ALTER TABLE `sportswearshop1`.`order`
+  ADD COLUMN `cart_id` BIGINT(10) NOT NULL AFTER `payment`;
+
+ALTER TABLE `sportswearshop1`.`order`
+  ADD INDEX `fk_order_cart_idx` (`cart_id` ASC) VISIBLE;
+;
+ALTER TABLE `sportswearshop1`.`order`
+  ADD CONSTRAINT `fk_order_cart`
+    FOREIGN KEY (`cart_id`)
+      REFERENCES `sportswearshop1`.`cart` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION;
+
